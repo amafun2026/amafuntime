@@ -30,8 +30,8 @@
     "password_error": "Incorrect password. Try again."
   },
   "settings": {
-    "supabase_url": "PASTE_YOUR_SUPABASE_URL_HERE",
-    "supabase_anon_key": "PASTE_YOUR_SUPABASE_ANON_KEY_HERE",
+    "supabase_url": "https://blzeigrvwsxzmxvtrlav.supabase.co",
+    "supabase_anon_key": "sb_publishable_O5yITICaT9KqhuRaaR5YVw_9-5TpRf5",
     "seed_mode": true,
     "dashboard_refresh_interval_seconds": 10,
     "answer_advance_delay_ms": 800,
