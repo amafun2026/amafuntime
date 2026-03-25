@@ -1,0 +1,214 @@
+{
+  "app": {
+    "title": "Data Team Townhall 2026",
+    "subtitle": "Vibe check the room 🎯",
+    "privacy_title": "Before we begin...",
+    "privacy_message": "This poll is completely anonymous. No personal information is collected or stored anywhere. Your responses cannot be traced back to you in any way.",
+    "privacy_sub": "This is purely for fun — to spark great conversations and good vibes in the room! 🎉",
+    "start_button": "Let's Go! 🚀",
+    "progress_label": "Question {current} of {total}",
+    "answered_label": "✅ You answered this one!",
+    "thank_you_title": "You're amazing! 🎉",
+    "thank_you_message": "Your answers are in! Sit back, relax, and watch the big screen. Let's see what the data team really thinks!",
+    "thank_you_sub": "Results will be revealed live by your host. Stay tuned! 🍿",
+    "completed_on_refresh_title": "You're all done! 🙌",
+    "completed_on_refresh_message": "You've answered all questions. Watch the big screen for the live reveal!",
+    "footer_note": "Anonymous • No data stored • Just for fun"
+  },
+  "dashboard": {
+    "password": "datahost2026",
+    "title": "Host Dashboard 🎛️",
+    "subtitle": "Data Team Townhall 2026",
+    "reveal_button": "Reveal Question 👁️",
+    "hide_button": "Hide Results",
+    "reset_button": "↺ Reset",
+    "total_responses_label": "Total Responses",
+    "last_updated_label": "Last updated",
+    "no_responses_label": "No responses yet",
+    "password_placeholder": "Enter host password",
+    "password_button": "Enter Dashboard",
+    "password_error": "Incorrect password. Try again.",
+    "locked_label": "Tap to reveal for the room",
+    "pick_label": "Pick your answer 👇"
+  },
+  "settings": {
+    "supabase_url": "https://blzeigrvwsxzmxvtrlav.supabase.co",
+    "supabase_anon_key": "sb_publishable_O5yITICaT9KqhuRaaR5YVw_9-5TpRf5",
+    "seed_mode": true,
+    "dashboard_refresh_interval_seconds": 10,
+    "answer_advance_delay_ms": 800,
+    "confetti_on_answer": true
+  },
+  "questions": [
+    {
+      "id": 1,
+      "emoji": "🤔",
+      "question": "Why did you actually get into the data field?",
+      "quips": {
+        "a": "Different kind of drops. Same crowd energy. Still headlining 🎧",
+        "b": "Root cause analysis as a personality trait. This is the origin story 🤔",
+        "c": "The door was open. The data was interesting. That was ten years ago 🗺️",
+        "d": "Famous last words. Best accidental career decision ever made 😄"
+      },
+      "options": [
+        { "id": "a", "text": "I wanted to be a DJ but ended up mixing datasets instead", "emoji": "🎧" },
+        { "id": "b", "text": "I asked too many 'why' questions as a kid and this career found me", "emoji": "🤔" },
+        { "id": "c", "text": "Someone gave me database access, said 'explore' — I never found the exit", "emoji": "🗺️" },
+        { "id": "d", "text": "The job description said 'data' and I said 'sure, how hard can it be'", "emoji": "😄" }
+      ]
+    },
+    {
+      "id": 2,
+      "emoji": "🎬",
+      "question": "If your team was a Bollywood character, who would it be?",
+      "quips": {
+        "a": "Ek dum bindaas! Full energy, zero chill, maximum output 🚀",
+        "b": "Built different. Loyal to the data, fearless in the fire 🔥",
+        "c": "Process-first legends. The governance team of the Bollywood universe 📋",
+        "d": "Romantic, hopeful, absolutely convinced the pipeline will work this time 😄"
+      },
+      "options": [
+        { "id": "a", "text": "Ranbir Singh from Dhuranadar — Young, energetic, Ishq Jalakar aa gaya!", "emoji": "🔥" },
+        { "id": "b", "text": "Suniel Shetty from Border — Ye data meri maa hai, koi nahin le sakta!", "emoji": "💪" },
+        { "id": "c", "text": "Amitabh Bachchan from Mohabbatein — Parampara, Pratishtha, Anushasan", "emoji": "🎩" },
+        { "id": "d", "text": "Shah Rukh Khan from DDLJ — arms wide open waiting for the data to load", "emoji": "💃" }
+      ]
+    },
+    {
+      "id": 3,
+      "emoji": "💼",
+      "question": "What is your TRUE energy in the first meeting of the week?",
+      "quips": {
+        "a": "Monday has no power over this energy. The team runs on pure voltage ⚡",
+        "b": "No rush, no noise. Just quiet confidence and a very strong agenda 👑",
+        "c": "The one who reframes the meeting in 60 seconds flat. Respect 🙏",
+        "d": "Functional over theatrical. Results over rituals. Absolutely iconic 😎"
+      },
+      "options": [
+        { "id": "a", "text": "Shaktimaan — pumped, ready, already saved two pipelines before 9am", "emoji": "⚡" },
+        { "id": "b", "text": "Baahubali — calm, composed, walks in and owns every second", "emoji": "👑" },
+        { "id": "c", "text": "Rancho from 3 Idiots — curious, asks the smartest question first", "emoji": "🧠" },
+        { "id": "d", "text": "Piku — efficient, no-nonsense, let's just get to the point", "emoji": "😎" }
+      ]
+    },
+    {
+      "id": 4,
+      "emoji": "💘",
+      "question": "Your honest relationship status with GenAI in 2026?",
+      "quips": {
+        "a": "Healthy scepticism. You've seen enough to know. Still here though 😬",
+        "b": "Daily standups together. No official commitment. Fully functional 😏",
+        "c": "The optimist and the AI. The power couple of 2026 💘",
+        "d": "From sceptic to superfan. The glow-up arc. Character development ✨"
+      },
+      "options": [
+        { "id": "a", "text": "It's complicated — brilliant one day, baffling the next", "emoji": "😬" },
+        { "id": "b", "text": "In a situationship — we vibe every day but nobody put a label on it", "emoji": "😏" },
+        { "id": "c", "text": "Deeply in love — completes my sentences and I am here for it", "emoji": "💘" },
+        { "id": "d", "text": "Started rocky, now inseparable — the classic slow-burn story", "emoji": "🥰" }
+      ]
+    },
+    {
+      "id": 5,
+      "emoji": "🦸",
+      "question": "Which superhero best describes your team on deadline day?",
+      "quips": {
+        "a": "Scattered across the globe, united by the sprint board. Always 💥",
+        "b": "No magic. Just obsessive preparation and a very good playbook 🦇",
+        "c": "Calm under pressure because they planned for this exact scenario 🔮",
+        "d": "Late but legendary. The landing is always perfect 🕷️"
+      },
+      "options": [
+        { "id": "a", "text": "Avengers — assemble from all time zones and always deliver", "emoji": "💥" },
+        { "id": "b", "text": "Batman — no superpowers, just prep, data, and sheer will", "emoji": "🦇" },
+        { "id": "c", "text": "Doctor Strange — already saw 14 million outcomes, picked this one", "emoji": "🔮" },
+        { "id": "d", "text": "Spider-Man — swings in at the last moment, sticks the landing", "emoji": "🕷️" }
+      ]
+    },
+    {
+      "id": 6,
+      "emoji": "🏏",
+      "question": "If your work style had a cricket legend, which would you be?",
+      "quips": {
+        "a": "The legend who never needed to announce themselves. The results did it 🏏",
+        "b": "The Wall. Built for pressure. Every delivery read. Absolutely unbreakable 🧱",
+        "c": "Never asks the team what they wouldn't do themselves. Pure fire 🔥",
+        "d": "Different game, same genius. Global instincts, world-class execution ⚽"
+      },
+      "options": [
+        { "id": "a", "text": "Sachin — calm, consistent, lets the work speak louder than the words", "emoji": "🏏" },
+        { "id": "b", "text": "Dravid — technically flawless, never gives up, the team's quiet rock", "emoji": "🧱" },
+        { "id": "c", "text": "Kohli — intense, passionate, leads from the front every single time", "emoji": "🔥" },
+        { "id": "d", "text": "Honestly? I don't follow cricket — I'm more of a Messi person", "emoji": "⚽" }
+      ]
+    },
+    {
+      "id": 7,
+      "emoji": "😈",
+      "question": "Who is the REAL villain in every data project?",
+      "quips": {
+        "a": "Plot twist after plot twist. Bollywood could learn from our PRDs 🎬",
+        "b": "One more column. One more filter. One more fiscal year. One more... 😤",
+        "c": "It works. Nobody knows why. Nobody is touching it. This is law 👻",
+        "d": "We don't name names. But the git blame does. Always 👀"
+      },
+      "options": [
+        { "id": "a", "text": "Requirements that changed AFTER 3 months of building", "emoji": "📝" },
+        { "id": "b", "text": "The stakeholder who says 'just one more column'", "emoji": "😤" },
+        { "id": "c", "text": "The legacy system nobody dares to touch", "emoji": "👻" },
+        { "id": "d", "text": "Whoever wrote that 3,000-line function with zero comments", "emoji": "👀" }
+      ]
+    },
+    {
+      "id": 8,
+      "emoji": "🌍",
+      "question": "What is the universal truth of every global team video call?",
+      "quips": {
+        "a": "Half the team is doing a virtual tour of someone's bookshelf right now 🎨",
+        "b": "The most spoken phrase in 47 languages across all time zones 🎤",
+        "c": "The real meeting is in the thread. Always has been 💬",
+        "d": "Pixelated legend. Still delivering more value than most full-HD attendees 📡"
+      },
+      "options": [
+        { "id": "a", "text": "Someone's background is more interesting than the actual agenda", "emoji": "🎨" },
+        { "id": "b", "text": "'You're on mute!' has officially replaced hello as the global greeting", "emoji": "🎤" },
+        { "id": "c", "text": "The best ideas always show up in the chat while someone else is talking", "emoji": "💬" },
+        { "id": "d", "text": "Every call has that one person whose connection is a modern art piece", "emoji": "📡" }
+      ]
+    },
+    {
+      "id": 9,
+      "emoji": "🤔",
+      "question": "If your data had a personality, it would be?",
+      "quips": {
+        "a": "Honest. Unfiltered. Occasionally uncomfortable. Completely necessary 🪞",
+        "b": "Doesn't reveal everything at once. The deeper you look, the richer it gets 🔍",
+        "c": "Asked for a number. Got an insight. Got a strategy. Got a career moment 📈",
+        "d": "Just when you think you know it, the data does something completely unexpected 😂"
+      },
+      "options": [
+        { "id": "a", "text": "That friend who tells you the truth even when you really didn't ask", "emoji": "🪞" },
+        { "id": "b", "text": "The mysterious one — brilliant, but takes real effort to understand", "emoji": "🔍" },
+        { "id": "c", "text": "The overachiever — always delivers more than you asked for", "emoji": "📈" },
+        { "id": "d", "text": "The comedian — surprises you with patterns nobody expected to find", "emoji": "😂" }
+      ]
+    },
+    {
+      "id": 10,
+      "emoji": "🦸",
+      "question": "Your data team is the Avengers. Which one are you?",
+      "quips": {
+        "a": "The moral compass. The process guardian. Eternally reliable 🛡️",
+        "b": "The force multiplier. Ships the tool. The team ships the rest 🔧",
+        "c": "Not lucky. Not guessing. Just already ran the numbers on all of them 🔮",
+        "d": "Not the villain of the story. Just the one willing to make the hard calls for long-term balance 💜"
+      },
+      "options": [
+        { "id": "a", "text": "Captain America — doing it the right way, every single time, no shortcuts", "emoji": "🛡️" },
+        { "id": "b", "text": "Iron Man — builds the platform that makes every teammate 10x more powerful", "emoji": "🔧" },
+        { "id": "c", "text": "Doctor Strange — looked at 14 million outcomes and picked this exact one", "emoji": "🔮" },
+        { "id": "d", "text": "Thanos — people misunderstand me. I just want balance, efficiency, and sustainable outcomes", "emoji": "💜" }
+      ]
+    }
+  ]
+}
