@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Host Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#0d1117;--surface:#161b22;--card:#1c2128;--border:#30363d;--text:#e6edf3;--muted:#7d8590;--a:#ff4d6d;--b:#4361ee;--c:#f4a261;--d:#2ec4b6;--purple:#7c3aed;--green:#2ea043;--red:#da3633}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
+#gate{position:fixed;inset:0;background:var(--bg);z-index:100;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px}
+#gate.hidden{display:none}
+.gate-icon{font-size:52px}
+.gate-title{font-family:'Syne',sans-serif;font-size:28px;font-weight:800}
+.gate-sub{color:var(--muted);font-size:14px}
+.gate-form{display:flex;flex-direction:column;gap:12px;width:100%;max-width:320px}
+.gate-input{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:14px 16px;border-radius:10px;font-size:15px;font-family:inherit;outline:none;transition:border-color 0.2s}
+.gate-input:focus{border-color:var(--purple)}
+.gate-input.shake{animation:shake 0.4s ease;border-color:var(--red)}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.gate-btn{background:var(--purple);color:white;border:none;padding:14px;border-radius:10px;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:opacity 0.2s}
+.gate-btn:hover{opacity:0.85}
+.gate-error{color:var(--red);font-size:13px;text-align:center;min-height:18px}
+#dashboard{display:none}
+#dashboard.visible{display:block}
+.header{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 20px;position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.header-left{flex:1}
+.header-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800}
+.header-sub{color:var(--muted);font-size:12px;margin-top:2px}
+.header-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.stat-chip{background:var(--card);border:1px solid var(--border);padding:6px 12px;border-radius:20px;font-size:13px;font-weight:600}
+.stat-chip span{color:var(--muted);font-weight:400;margin-right:4px}
+.last-update{font-size:11px;color:var(--muted)}
+.seed-wrap{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);padding:7px 12px;border-radius:20px}
+.seed-label{font-size:12px;font-weight:600;color:var(--muted)}
+.seed-status{font-size:11px;font-weight:700;padding:2px 7px;border-radius:10px}
+.seed-status.on{background:rgba(244,162,97,0.2);color:#f4a261}
+.seed-status.off{background:rgba(46,196,182,0.2);color:var(--d)}
+.toggle-switch{position:relative;display:inline-block;width:40px;height:22px;cursor:pointer;flex-shrink:0}
+.toggle-switch input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:var(--border);border-radius:22px;transition:0.3s}
+.toggle-slider::before{content:'';position:absolute;height:16px;width:16px;left:3px;bottom:3px;background:white;border-radius:50%;transition:0.3s}
+input:checked+.toggle-slider{background:#f4a261}
+input:checked+.toggle-slider::before{transform:translateX(18px)}
+.grid{padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color 0.3s}
+.q-card.revealed{border-color:var(--purple)}
+.q-card-header{padding:14px 16px;display:flex;align-items:flex-start;gap:10px}
+.q-number{background:var(--surface);border:1px solid var(--border);width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:12px;font-weight:800;flex-shrink:0;color:var(--muted)}
+.q-card-text{flex:1}
+.q-card-question{font-size:13px;font-weight:600;line-height:1.4;margin-bottom:6px}
+.q-card-meta{display:flex;align-items:center;gap:7px}
+.response-count{font-size:12px;color:var(--muted)}
+.live-dot{display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.q-card-footer{padding:0 16px 14px}
+.btn-reveal{width:100%;padding:10px;border-radius:9px;border:none;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s}
+.btn-reveal.show-reveal{background:var(--purple);color:white}
+.btn-reveal.show-reveal:hover{background:#6d28d9}
+.btn-reveal.show-hide{background:var(--surface);color:var(--muted);border:1px solid var(--border)}
+.chart-area{padding:0 16px 16px;display:none;animation:slideDown 0.4s ease}
+.chart-area.visible{display:block}
+@keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.chart-divider{height:1px;background:var(--border);margin-bottom:12px}
+.chart-question{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;margin-bottom:12px;line-height:1.35;color:var(--text)}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.bar-emoji{font-size:16px;flex-shrink:0;width:22px;text-align:center}
+.bar-label{font-size:11px;color:var(--muted);width:90px;flex-shrink:0;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-track{flex:1;background:var(--surface);border-radius:5px;height:26px;overflow:hidden}
+.bar-fill{height:100%;border-radius:5px;width:0%;transition:width 1s cubic-bezier(0.4,0,0.2,1);display:flex;align-items:center;justify-content:flex-end;padding-right:7px}
+.bar-fill span{font-size:10px;font-weight:700;color:white;white-space:nowrap;opacity:0;transition:opacity 0.3s 0.8s}
+.bar-fill.show span{opacity:1}
+.bar-a{background:var(--a)}.bar-b{background:var(--b)}.bar-c{background:var(--c)}.bar-d{background:var(--d)}
+.bar-count{font-size:11px;color:var(--muted);width:32px;text-align:right;flex-shrink:0}
+.bar-row.winner .bar-label{color:var(--text);font-weight:600}
+.bar-row.winner .bar-count{color:var(--text);font-weight:700}
+.chart-total{font-size:11px;color:var(--muted);margin-top:4px;text-align:right}
+#page-loader{position:fixed;inset:0;background:var(--bg);z-index:200;display:flex;align-items:center;justify-content:center}
+#page-loader.gone{display:none}
+.loader{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--purple);border-radius:50%;animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div id="page-loader"><div class="loader"></div></div>
+<div id="gate">
+  <div class="gate-icon">🎛️</div>
+  <div class="gate-title" id="gate-title">Host Dashboard</div>
+  <div class="gate-sub" id="gate-sub"></div>
+  <div class="gate-form">
+    <input type="password" class="gate-input" id="gate-input" autocomplete="off"/>
+    <button class="gate-btn" id="gate-btn">Enter Dashboard</button>
+    <div class="gate-error" id="gate-error"></div>
+  </div>
+</div>
+<div id="dashboard">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-title" id="dash-title"></div>
+      <div class="header-sub" id="dash-sub"></div>
+    </div>
+    <div class="header-right">
+      <div class="stat-chip"><span>Responses</span><span id="total-responses">—</span></div>
+      <div class="last-update" id="last-updated"></div>
+      <div class="seed-wrap">
+        <div class="seed-label">Seed Mode</div>
+        <div class="seed-status" id="seed-status">—</div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="seed-toggle"/>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="grid" id="questions-grid"></div>
+</div>
+<script>
+const CONFIG_URL='config.json';
+let CFG=null,QUESTIONS=[],supabase_url='',supabase_key='',responseCounts={};
+
+async function sbFetch(path){
+  const r=await fetch(`${supabase_url}/rest/v1/${path}`,{headers:{'apikey':supabase_key,'Authorization':`Bearer ${supabase_key}`,'Content-Type':'application/json'}});
+  return r.json();
+}
+async function sbPatch(table,match,data){
+  const p=Object.entries(match).map(([k,v])=>`${k}=eq.${encodeURIComponent(v)}`).join('&');
+  await fetch(`${supabase_url}/rest/v1/${table}?${p}`,{method:'PATCH',headers:{'apikey':supabase_key,'Authorization':`Bearer ${supabase_key}`,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(data)});
+}
+
+async function loadResponses(){
+  if(supabase_url.includes('PASTE_YOUR'))return;
+  try{
+    const data=await sbFetch('responses?select=question_id,option_id');
+    const counts={};let total=0;
+    QUESTIONS.forEach(q=>{counts[q.id]={a:0,b:0,c:0,d:0,total:0}});
+    data.forEach(r=>{if(counts[r.question_id]){counts[r.question_id][r.option_id]++;counts[r.question_id].total++;total++;}});
+    responseCounts=counts;
+    document.getElementById('total-responses').textContent=total;
+    document.getElementById('last-updated').textContent='Updated '+new Date().toLocaleTimeString();
+    QUESTIONS.forEach(q=>{
+      const el=document.getElementById(`count-${q.id}`);
+      if(el)el.textContent=(responseCounts[q.id]?.total||0)+' responses';
+      const chart=document.getElementById(`chart-${q.id}`);
+      if(chart&&chart.classList.contains('visible'))renderBars(q.id);
+    });
+  }catch(e){}
+}
+
+function renderBars(qid){
+  const q=QUESTIONS.find(x=>x.id===qid);
+  const c=responseCounts[qid]||{a:0,b:0,c:0,d:0,total:0};
+  const total=c.total||1;
+  const maxC=Math.max(c.a,c.b,c.c,c.d,1);
+  q.options.forEach(opt=>{
+    const count=c[opt.id]||0;
+    const pct=Math.round((count/total)*100);
+    const bf=document.getElementById(`bf-${qid}-${opt.id}`);
+    const bc=document.getElementById(`bc-${qid}-${opt.id}`);
+    const br=document.getElementById(`br-${qid}-${opt.id}`);
+    if(bf){bf.style.width=(count===0?0:Math.max(6,(count/maxC)*100))+'%';bf.querySelector('span').textContent=pct+'%';setTimeout(()=>bf.classList.add('show'),100);}
+    if(bc)bc.textContent=count;
+    if(br)br.classList.toggle('winner',count===maxC&&count>0);
+  });
+  const te=document.getElementById(`ct-${qid}`);
+  if(te)te.textContent=c.total+' total responses';
+}
+
+function buildCards(){
+  const grid=document.getElementById('questions-grid');
+  grid.innerHTML='';
+  const barCls=['bar-a','bar-b','bar-c','bar-d'];
+  QUESTIONS.forEach((q,idx)=>{
+    const card=document.createElement('div');
+    card.className='q-card';card.id=`card-${q.id}`;
+    const barsHTML=q.options.map((opt,i)=>`
+      <div class="bar-row" id="br-${q.id}-${opt.id}">
+        <div class="bar-emoji">${opt.emoji}</div>
+        <div class="bar-label" title="${opt.text}">${opt.text}</div>
+        <div class="bar-track"><div class="bar-fill ${barCls[i]}" id="bf-${q.id}-${opt.id}"><span></span></div></div>
+        <div class="bar-count" id="bc-${q.id}-${opt.id}">0</div>
+      </div>`).join('');
+    card.innerHTML=`
+      <div class="q-card-header">
+        <div class="q-number">${idx+1}</div>
+        <div class="q-card-text">
+          <div class="q-card-question">${q.emoji} ${q.question}</div>
+          <div class="q-card-meta"><div class="live-dot"></div><div class="response-count" id="count-${q.id}">Loading...</div></div>
+        </div>
+      </div>
+      <div class="q-card-footer"><button class="btn-reveal show-reveal" id="btn-${q.id}">${CFG.dashboard.reveal_button}</button></div>
+      <div class="chart-area" id="chart-${q.id}">
+        <div class="chart-divider"></div>
+        <div class="chart-question">${q.question}</div>
+        ${barsHTML}
+        <div class="chart-total" id="ct-${q.id}"></div>
+      </div>`;
+    grid.appendChild(card);
+    document.getElementById(`btn-${q.id}`).addEventListener('click',()=>toggleReveal(q.id));
+  });
+}
+
+function toggleReveal(qid){
+  const card=document.getElementById(`card-${qid}`);
+  const chart=document.getElementById(`chart-${qid}`);
+  const btn=document.getElementById(`btn-${qid}`);
+  const revealed=chart.classList.contains('visible');
+  if(!revealed){
+    chart.classList.add('visible');card.classList.add('revealed');
+    btn.textContent=CFG.dashboard.hide_button;btn.className='btn-reveal show-hide';
+    setTimeout(()=>renderBars(qid),60);
+  } else {
+    chart.classList.remove('visible');card.classList.remove('revealed');
+    btn.textContent=CFG.dashboard.reveal_button;btn.className='btn-reveal show-reveal';
+  }
+}
+
+async function loadSeedMode(){
+  if(supabase_url.includes('PASTE_YOUR')){updateSeedUI(CFG.settings.seed_mode);return;}
+  try{
+    const data=await sbFetch('settings?key=eq.seed_mode&select=value');
+    updateSeedUI(data[0]?.value==='true');
+  }catch(e){updateSeedUI(CFG.settings.seed_mode);}
+}
+
+function updateSeedUI(isOn){
+  const s=document.getElementById('seed-status');
+  s.textContent=isOn?'ON':'OFF';s.className='seed-status '+(isOn?'on':'off');
+  document.getElementById('seed-toggle').checked=isOn;
+}
+
+document.getElementById('seed-toggle').addEventListener('change',async e=>{
+  const isOn=e.target.checked;
+  updateSeedUI(isOn);
+  if(!supabase_url.includes('PASTE_YOUR')){
+    try{await sbPatch('settings',{key:'seed_mode'},{value:String(isOn)});}catch(e){}
+  }
+});
+
+function setupGate(){
+  const input=document.getElementById('gate-input');
+  const btn=document.getElementById('gate-btn');
+  const err=document.getElementById('gate-error');
+  function tryLogin(){
+    if(input.value===CFG.dashboard.password){
+      document.getElementById('gate').classList.add('hidden');
+      document.getElementById('dashboard').classList.add('visible');
+      buildCards();
+      loadResponses();
+      loadSeedMode();
+      setInterval(loadResponses,(CFG.settings.dashboard_refresh_interval_seconds||10)*1000);
+    } else {
+      err.textContent=CFG.dashboard.password_error;
+      input.classList.add('shake');input.value='';
+      setTimeout(()=>input.classList.remove('shake'),500);
+    }
+  }
+  btn.addEventListener('click',tryLogin);
+  input.addEventListener('keydown',e=>{if(e.key==='Enter')tryLogin();});
+}
+
+async function boot(){
+  try{const r=await fetch(CONFIG_URL+'?v='+Date.now());CFG=await r.json();}
+  catch(e){document.getElementById('page-loader').innerHTML='<div style="color:#ff4d6d;padding:24px;text-align:center">Could not load config.json</div>';return;}
+  QUESTIONS=CFG.questions;
+  supabase_url=CFG.settings.supabase_url;
+  supabase_key=CFG.settings.supabase_anon_key;
+  document.getElementById('gate-title').textContent=CFG.dashboard.title;
+  document.getElementById('gate-sub').textContent=CFG.app.title;
+  document.getElementById('gate-input').placeholder=CFG.dashboard.password_placeholder;
+  document.getElementById('gate-btn').textContent=CFG.dashboard.password_button;
+  document.getElementById('dash-title').textContent=CFG.dashboard.title;
+  document.getElementById('dash-sub').textContent=CFG.app.title;
+  document.title=CFG.dashboard.title;
+  document.getElementById('page-loader').classList.add('gone');
+  setupGate();
+}
+boot();
+</script>
+</body>
+</html>
