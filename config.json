@@ -1,0 +1,152 @@
+{
+  "app": {
+    "title": "Data Team Townhall 2025",
+    "subtitle": "Vibe check the room 🎯",
+    "privacy_title": "Before we begin...",
+    "privacy_message": "This poll is completely anonymous. No personal information is collected or stored anywhere. Your responses cannot be traced back to you in any way.",
+    "privacy_sub": "This is purely for fun — to spark great conversations and good vibes in the room! 🎉",
+    "start_button": "Let's Go! 🚀",
+    "progress_label": "Question {current} of {total}",
+    "answered_label": "✅ You answered this one!",
+    "thank_you_title": "You're amazing! 🎉",
+    "thank_you_message": "Your answers are in! Sit back, relax, and watch the big screen. Let's see what the data team really thinks!",
+    "thank_you_sub": "Results will be revealed live by your host. Stay tuned! 🍿",
+    "completed_on_refresh_title": "You're all done! 🙌",
+    "completed_on_refresh_message": "You've answered all questions. Watch the big screen for the live reveal!",
+    "footer_note": "Anonymous • No data stored • Just for fun"
+  },
+  "dashboard": {
+    "password": "datahost2025",
+    "title": "Host Dashboard 🎛️",
+    "subtitle": "Data Team Townhall 2025",
+    "reveal_button": "Reveal Results 📊",
+    "hide_button": "Hide Results",
+    "reset_button": "Reset",
+    "total_responses_label": "Total Responses",
+    "last_updated_label": "Last updated",
+    "no_responses_label": "No responses yet",
+    "password_placeholder": "Enter host password",
+    "password_button": "Enter Dashboard",
+    "password_error": "Incorrect password. Try again."
+  },
+  "settings": {
+    "supabase_url": "PASTE_YOUR_SUPABASE_URL_HERE",
+    "supabase_anon_key": "PASTE_YOUR_SUPABASE_ANON_KEY_HERE",
+    "seed_mode": true,
+    "dashboard_refresh_interval_seconds": 10,
+    "answer_advance_delay_ms": 800,
+    "confetti_on_answer": true
+  },
+  "questions": [
+    {
+      "id": 1,
+      "emoji": "🌀",
+      "question": "What is the most unpredictable thing in 2025?",
+      "options": [
+        { "id": "a", "text": "Bangalore traffic", "emoji": "🛣️" },
+        { "id": "b", "text": "Vibe-coded AI agents", "emoji": "🤖" },
+        { "id": "c", "text": "Crypto prices", "emoji": "📈" },
+        { "id": "d", "text": "Mumbai monsoon", "emoji": "🌦️" }
+      ]
+    },
+    {
+      "id": 2,
+      "emoji": "🚀",
+      "question": "What is the real prerequisite for launching your data agent?",
+      "options": [
+        { "id": "a", "text": "Name must end in Y — Sparky, Wibey, Datafy!", "emoji": "😄" },
+        { "id": "b", "text": "It must hallucinate at least once in testing", "emoji": "🧠" },
+        { "id": "c", "text": "A 40-slide PPT approved before go-live", "emoji": "📋" },
+        { "id": "d", "text": "Chai in hand at the moment of deployment", "emoji": "☕" }
+      ]
+    },
+    {
+      "id": 3,
+      "emoji": "🎭",
+      "question": "If your data pipeline had a Bollywood personality, it would be?",
+      "options": [
+        { "id": "a", "text": "Devdas — dramatic and always breaking", "emoji": "😱" },
+        { "id": "b", "text": "Rancho — solves everything with jugaad", "emoji": "🧠" },
+        { "id": "c", "text": "Mogambo — unpredictable and powerful", "emoji": "🕵️" },
+        { "id": "d", "text": "Paa — wise, surprising, always late", "emoji": "🎭" }
+      ]
+    },
+    {
+      "id": 4,
+      "emoji": "🤖",
+      "question": "What does Agentic AI mean to your average stakeholder?",
+      "options": [
+        { "id": "a", "text": "AI that works while I sleep", "emoji": "😴" },
+        { "id": "b", "text": "ChatGPT but more expensive", "emoji": "💸" },
+        { "id": "c", "text": "Something that needs more budget approval", "emoji": "📝" },
+        { "id": "d", "text": "Still figuring it out honestly", "emoji": "😅" }
+      ]
+    },
+    {
+      "id": 5,
+      "emoji": "😬",
+      "question": "Your honest reaction when someone says 'just use AI for that'?",
+      "options": [
+        { "id": "a", "text": "Sure — which AI though?", "emoji": "🤔" },
+        { "id": "b", "text": "Have you seen our data quality?", "emoji": "🙄" },
+        { "id": "c", "text": "Actually yes, let's do it!", "emoji": "🤩" },
+        { "id": "d", "text": "*Smiles and slowly nods*", "emoji": "😶" }
+      ]
+    },
+    {
+      "id": 6,
+      "emoji": "🍵",
+      "question": "What fuels your best data decisions?",
+      "options": [
+        { "id": "a", "text": "Chai — always and only", "emoji": "🍵" },
+        { "id": "b", "text": "Coffee — no negotiations", "emoji": "☕" },
+        { "id": "c", "text": "Both equally depending on deadline", "emoji": "🔄" },
+        { "id": "d", "text": "Panic — the original performance enhancer", "emoji": "😱" }
+      ]
+    },
+    {
+      "id": 7,
+      "emoji": "🧪",
+      "question": "How do you explain Prompt Engineering at a family dinner?",
+      "options": [
+        { "id": "a", "text": "Talking very nicely to a robot", "emoji": "🗣️" },
+        { "id": "b", "text": "Writing very specific Google searches", "emoji": "📝" },
+        { "id": "c", "text": "Acting coach for AI", "emoji": "🎭" },
+        { "id": "d", "text": "Dark arts we don't fully understand yet", "emoji": "🔮" }
+      ]
+    },
+    {
+      "id": 8,
+      "emoji": "📊",
+      "question": "Most used phrase in your data team meetings?",
+      "options": [
+        { "id": "a", "text": "Can you pull the numbers?", "emoji": "📊" },
+        { "id": "b", "text": "It depends on the definition", "emoji": "🤔" },
+        { "id": "c", "text": "That's a data quality issue", "emoji": "🔴" },
+        { "id": "d", "text": "Let me take this offline", "emoji": "😅" }
+      ]
+    },
+    {
+      "id": 9,
+      "emoji": "🏏",
+      "question": "If ChatGPT, Gemini, Copilot and Claude were IPL teams, who wins 2025?",
+      "options": [
+        { "id": "a", "text": "ChatGPT — consistent opener, never surprises", "emoji": "🏏" },
+        { "id": "b", "text": "Gemini — strong middle order, Google money", "emoji": "💎" },
+        { "id": "c", "text": "Copilot — ultimate team player in Office", "emoji": "🤝" },
+        { "id": "d", "text": "Claude — thinks before every shot", "emoji": "🤔" }
+      ]
+    },
+    {
+      "id": 10,
+      "emoji": "🌍",
+      "question": "What is the hardest part of working in a global data team?",
+      "options": [
+        { "id": "a", "text": "Time zones eating your mornings alive", "emoji": "🌍" },
+        { "id": "b", "text": "Everyone defines KPIs differently", "emoji": "📐" },
+        { "id": "c", "text": "Too many tools, too little standardisation", "emoji": "🔄" },
+        { "id": "d", "text": "The meeting that could have been an email", "emoji": "📧" }
+      ]
+    }
+  ]
+}
