@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Data Team Townhall 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --border: rgba(0,113,206,0.15);
+  --text: #1a1a2e;
+  --muted: rgba(26,26,46,0.5);
+  --walmart-yellow: #ffc220;
+  --walmart-blue: #0071ce;
+  --a: #ff4757; --a-dim: rgba(255,71,87,0.15);
+  --b: #2ed573; --b-dim: rgba(46,213,115,0.15);
+  --c: #ffa502; --c-dim: rgba(255,165,2,0.15);
+  --d: #1e90ff; --d-dim: rgba(30,144,255,0.15);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 20%,rgba(0,113,206,0.05) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(0,113,206,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+#app{position:relative;z-index:1;height:100vh;display:flex;flex-direction:column}
+.screen{display:none;flex-direction:column;height:100vh;padding:28px 20px 24px;animation:fadeUp 0.4s ease}
+.screen.active{display:flex}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* WELCOME */
+#welcome-screen{justify-content:center;align-items:center;text-align:center;gap:0}
+.welcome-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,113,206,0.10);border:1px solid rgba(0,113,206,0.3);color:#0071ce;font-size:12px;font-weight:600;letter-spacing:0.08em;padding:6px 14px;border-radius:100px;margin-bottom:28px;text-transform:uppercase}
+.welcome-title{font-family:'Syne',sans-serif;font-size:clamp(28px,7vw,48px);font-weight:800;line-height:1.1;margin-bottom:8px}
+.welcome-subtitle{color:var(--muted);font-size:16px;margin-bottom:32px}
+.privacy-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;margin-bottom:28px;text-align:left;max-width:400px;width:100%}
+.privacy-card .lock-icon{font-size:26px;margin-bottom:10px}
+.privacy-card h3{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:8px}
+.privacy-card p{font-size:13px;color:var(--muted);line-height:1.6}
+.privacy-card .privacy-sub{margin-top:8px;font-size:13px;color:rgba(46,213,115,0.8)}
+.btn-start{background:linear-gradient(135deg,#0071ce,#0055a5);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:17px;border:none;border-radius:14px;padding:17px 40px;cursor:pointer;width:100%;max-width:400px;box-shadow:0 8px 32px rgba(0,113,206,0.25);transition:transform 0.15s,box-shadow 0.15s}
+.btn-start:active{transform:scale(0.97);box-shadow:0 4px 16px rgba(0,113,206,0.15)}
+.footer-note{margin-top:18px;font-size:12px;color:var(--muted)}
+
+/* QUESTION */
+#question-screen{justify-content:space-between;padding:20px 20px 24px}
+.progress-bar-wrap{margin-bottom:12px}
+.progress-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.progress-label{font-size:13px;color:var(--muted);font-weight:500}
+.progress-count{font-size:13px;color:var(--muted)}
+.progress-bar-bg{height:4px;background:rgba(0,0,0,0.10);border-radius:4px;overflow:hidden}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,#0071ce,#2ed573);border-radius:4px;transition:width 0.4s ease}
+.question-body{flex:1;display:flex;flex-direction:column;justify-content:center}
+.question-emoji{font-size:44px;margin-bottom:14px;display:block}
+.question-text{font-family:'Syne',sans-serif;font-size:clamp(18px,4.5vw,26px);font-weight:700;line-height:1.35;margin-bottom:24px}
+.options-grid{display:flex;flex-direction:column;gap:11px}
+.option-btn{display:flex;align-items:center;gap:12px;padding:15px 16px;border-radius:13px;border:2px solid transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;text-align:left;transition:transform 0.15s,background 0.2s,border-color 0.2s;position:relative;overflow:hidden}
+.option-btn:active:not(:disabled){transform:scale(0.98)}
+.option-btn:disabled{cursor:default}
+.option-btn[data-opt="a"]{background:var(--a-dim);border-color:rgba(0,113,206,0.3)}
+.option-btn[data-opt="b"]{background:var(--b-dim);border-color:rgba(0,113,206,0.3)}
+.option-btn[data-opt="c"]{background:var(--c-dim);border-color:rgba(0,113,206,0.3)}
+.option-btn[data-opt="d"]{background:var(--d-dim);border-color:rgba(0,113,206,0.3)}
+.option-btn[data-opt="a"]:hover:not(:disabled){background:rgba(255,71,87,0.15);border-color:#0071ce}
+.option-btn[data-opt="b"]:hover:not(:disabled){background:rgba(46,213,115,0.15);border-color:#0071ce}
+.option-btn[data-opt="c"]:hover:not(:disabled){background:rgba(255,165,2,0.15);border-color:#0071ce}
+.option-btn[data-opt="d"]:hover:not(:disabled){background:rgba(30,144,255,0.15);border-color:#0071ce}
+.option-btn.selected[data-opt="a"],
+.option-btn.selected[data-opt="b"],
+.option-btn.selected[data-opt="c"],
+.option-btn.selected[data-opt="d"]{background:#ffc220;border-color:#ffc220;color:#1a1a2e}
+.option-btn.other-dim{opacity:0.4}
+.option-emoji{font-size:20px;flex-shrink:0}
+.option-text{flex:1;line-height:1.4}
+.option-check{font-size:16px;flex-shrink:0;opacity:0;transition:opacity 0.2s}
+.option-btn.selected .option-check{opacity:1}
+.answered-note{text-align:center;color:var(--muted);font-size:13px;margin-top:10px;padding:9px;background:rgba(0,0,0,0.05);border-radius:10px}
+
+/* THANKYOU */
+#thankyou-screen{justify-content:center;align-items:center;text-align:center}
+.ty-emoji{font-size:72px;margin-bottom:24px;display:block;animation:scaleIn 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards}
+@keyframes scaleIn{from{transform:scale(0.4);opacity:0}to{transform:scale(1);opacity:1}}
+.ty-title{font-family:'Syne',sans-serif;font-size:clamp(26px,7vw,42px);font-weight:800;margin-bottom:14px}
+.ty-message{font-size:15px;color:var(--muted);line-height:1.7;max-width:320px;margin-bottom:10px}
+.ty-sub{font-size:14px;color:rgba(46,213,115,0.7)}
+
+/* CELEBRATION */
+.celebration-ring{position:fixed;border-radius:50%;border:2px solid rgba(0,113,206,0.5);pointer-events:none;z-index:9999;transform:translate(-50%,-50%) scale(0);animation:ringExpand 1.2s cubic-bezier(0.2,0.8,0.4,1) forwards}
+@keyframes ringExpand{0%{transform:translate(-50%,-50%) scale(0);opacity:0.9}100%{transform:translate(-50%,-50%) scale(14);opacity:0}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="screen active" id="welcome-screen">
+    <div class="welcome-badge">🔒 Anonymous Poll</div>
+    <h1 class="welcome-title" id="app-title">Data Team Townhall 2025</h1>
+    <p class="welcome-subtitle" id="app-subtitle">Vibe check the room 🎯</p>
+    <div class="privacy-card">
+      <div class="lock-icon">🛡️</div>
+      <h3 id="privacy-title">Before we begin...</h3>
+      <p id="privacy-message">This poll is completely anonymous.</p>
+      <p class="privacy-sub" id="privacy-sub"></p>
+    </div>
+    <button class="btn-start" id="start-btn">Let's Go! 🚀</button>
+    <p class="footer-note" id="footer-note">Anonymous • No data stored • Just for fun</p>
+  </div>
+
+  <div class="screen" id="question-screen">
+    <div class="progress-bar-wrap">
+      <div class="progress-meta">
+        <span class="progress-label" id="progress-label">Question 1 of 10</span>
+        <span class="progress-count" id="progress-count">0 answered</span>
+      </div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
+    </div>
+    <div class="question-body">
+      <span class="question-emoji" id="q-emoji">🌀</span>
+      <p class="question-text" id="q-text">Loading...</p>
+      <div class="options-grid" id="options-grid"></div>
+      <div class="answered-note" id="answered-note" style="display:none"></div>
+    </div>
+  </div>
+
+  <div class="screen" id="thankyou-screen">
+    <span class="ty-emoji">🎉</span>
+    <h2 class="ty-title" id="ty-title">You're amazing!</h2>
+    <p class="ty-message" id="ty-message">Your answers are in!</p>
+    <p class="ty-sub" id="ty-sub">Stay tuned 🍿</p>
+  </div>
+</div>
+
+<script>
+const LS_ID='townhall_player_id',LS_ANS='townhall_answers',LS_DONE='townhall_completed',LS_CUR='townhall_current_q';
+let CFG=null,questions=[],currentIndex=0,answers={},playerId=null,seedMode=true;
+
+async function init(){
+  CFG=await fetch('./config.json').then(r=>r.json());
+  questions=CFG.questions;
+  seedMode=CFG.settings.seed_mode;
+  applyConfig();
+  initPlayer();
+  routePlayer();
+}
+
+function applyConfig(){
+  const a=CFG.app;
+  document.title=a.title;
+  setText('app-title',a.title);
+  setText('app-subtitle',a.subtitle);
+  setText('privacy-title',a.privacy_title);
+  setText('privacy-message',a.privacy_message);
+  setText('privacy-sub',a.privacy_sub);
+  document.getElementById('start-btn').textContent=a.start_button;
+  setText('footer-note',a.footer_note);
+  setText('ty-title',a.thank_you_title);
+  setText('ty-message',a.thank_you_message);
+  setText('ty-sub',a.thank_you_sub);
+}
+
+function setText(id,val){const el=document.getElementById(id);if(el)el.textContent=val;}
+
+function initPlayer(){
+  let id=localStorage.getItem(LS_ID);
+  if(!id){id=crypto.randomUUID();localStorage.setItem(LS_ID,id);}
+  playerId=id;
+  const saved=localStorage.getItem(LS_ANS);
+  answers=saved?JSON.parse(saved):{};
+}
+
+function routePlayer(){
+  const done=localStorage.getItem(LS_DONE)==='true';
+  if(done||Object.keys(answers).length===questions.length){showThankYou();return;}
+  if(Object.keys(answers).length===0){showScreen('welcome-screen');return;}
+  const first=questions.findIndex(q=>!answers[q.id]);
+  currentIndex=first>=0?first:0;
+  showScreen('question-screen');
+  renderQuestion();
+}
+
+document.getElementById('start-btn').addEventListener('click',()=>{
+  currentIndex=0;
+  showScreen('question-screen');
+  renderQuestion();
+});
+
+function renderQuestion(){
+  const q=questions[currentIndex];
+  const total=questions.length;
+  const answeredCount=Object.keys(answers).length;
+  const label=CFG.app.progress_label.replace('{current}',currentIndex+1).replace('{total}',total);
+  setText('progress-label',label);
+  setText('progress-count',answeredCount+' answered');
+  document.getElementById('progress-fill').style.width=`${(currentIndex/total)*100}%`;
+  setText('q-emoji',q.emoji);
+  setText('q-text',q.question);
+  const note=document.getElementById('answered-note');
+  note.style.display='none';
+  const grid=document.getElementById('options-grid');
+  grid.innerHTML='';
+  const alreadyAnswered=answers[q.id];
+  q.options.forEach(opt=>{
+    const btn=document.createElement('button');
+    btn.className='option-btn';
+    btn.dataset.opt=opt.id;
+    btn.innerHTML=`<span class="option-emoji">${opt.emoji}</span><span class="option-text">${opt.text}</span><span class="option-check">✓</span>`;
+    if(alreadyAnswered){
+      btn.disabled=true;
+      if(alreadyAnswered===opt.id)btn.classList.add('selected');
+      else btn.classList.add('other-dim');
+    } else {
+      btn.addEventListener('click',()=>handleAnswer(q.id,opt.id));
+    }
+    grid.appendChild(btn);
+  });
+  if(alreadyAnswered){
+    note.textContent=CFG.app.answered_label;
+    note.style.display='block';
+    setTimeout(()=>advanceQuestion(),1200);
+  }
+  localStorage.setItem(LS_CUR,currentIndex);
+}
+
+async function handleAnswer(questionId,optionId){
+  answers[questionId]=optionId;
+  localStorage.setItem(LS_ANS,JSON.stringify(answers));
+  const grid=document.getElementById('options-grid');
+  grid.querySelectorAll('.option-btn').forEach(btn=>{
+    btn.disabled=true;
+    if(btn.dataset.opt===optionId)btn.classList.add('selected');
+    else btn.classList.add('other-dim');
+  });
+  await saveResponse(questionId,optionId);
+  setTimeout(()=>advanceQuestion(),CFG.settings.answer_advance_delay_ms);
+}
+
+function advanceQuestion(){
+  let next=-1;
+  for(let i=currentIndex+1;i<questions.length;i++){if(!answers[questions[i].id]){next=i;break;}}
+  if(next===-1){
+    const allDone=questions.every(q=>answers[q.id]);
+    if(allDone){localStorage.setItem(LS_DONE,'true');showThankYou();return;}
+    for(let i=0;i<questions.length;i++){if(!answers[questions[i].id]){next=i;break;}}
+  }
+  if(next>=0){currentIndex=next;renderQuestion();}
+  else{localStorage.setItem(LS_DONE,'true');showThankYou();}
+}
+
+async function saveResponse(questionId,optionId){
+  const url=CFG.settings.supabase_url;
+  const key=CFG.settings.supabase_anon_key;
+  if(!url||url==='PASTE_YOUR_SUPABASE_URL_HERE')return;
+  const fingerprint=seedMode?crypto.randomUUID():playerId;
+  try{
+    await fetch(`${url}/rest/v1/responses`,{
+      method:'POST',
+      headers:{'apikey':key,'Authorization':`Bearer ${key}`,'Content-Type':'application/json','Prefer':'resolution=ignore-duplicates'},
+      body:JSON.stringify({question_id:questionId,option_id:optionId,fingerprint})
+    });
+  }catch(e){console.warn('Save failed',e);}
+}
+
+function showThankYou(){showScreen('thankyou-screen');spawnCelebration();}
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>{s.classList.remove('active');s.style.display='none';});
+  const el=document.getElementById(id);
+  el.style.display='flex';
+  requestAnimationFrame(()=>el.classList.add('active'));
+}
+
+function spawnCelebration(){
+  const cx=window.innerWidth/2,cy=window.innerHeight/2;
+  [0,200,400,650].forEach((delay,i)=>{
+    setTimeout(()=>{
+      const ring=document.createElement('div');
+      ring.className='celebration-ring';
+      const size=60+(i*20);
+      ring.style.cssText=`left:${cx}px;top:${cy}px;width:${size}px;height:${size}px;`;
+      document.body.appendChild(ring);
+      setTimeout(()=>ring.remove(),1500);
+    },delay);
+  });
+}
+
+init();
+</script>
+</body>
+</html>
