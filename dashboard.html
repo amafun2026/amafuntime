@@ -182,7 +182,7 @@ input:checked+.toggle-slider::before{transform:translateX(18px)}
 </div>
 
 <script>
-const CONFIG_URL='config_v2.json';
+const CONFIG_URL='config.json';
 let CFG=null,QUESTIONS=[],supabase_url='',supabase_key='',responseCounts={};
 
 /* ── SUPABASE HELPERS (unchanged) ── */
@@ -411,7 +411,7 @@ function setupGate(){
 /* ── BOOT (unchanged except CONFIG_URL) ── */
 async function boot(){
   try{const r=await fetch(CONFIG_URL+'?v='+Date.now());CFG=await r.json();}
-  catch(e){document.getElementById('page-loader').innerHTML='<div style="color:#da3633;padding:24px;text-align:center">Could not load config_v2.json</div>';return;}
+  catch(e){document.getElementById('page-loader').innerHTML='<div style="color:#da3633;padding:24px;text-align:center">Could not load config.json</div>';return;}
   QUESTIONS=CFG.questions;
   supabase_url=CFG.settings.supabase_url;
   supabase_key=CFG.settings.supabase_anon_key;
